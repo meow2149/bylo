@@ -1,0 +1,32 @@
+{
+  "name": "@bylo/websocket",
+  "version": "0.0.1",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "scripts": {
+    "prebuild": "prettier --write src/ --cache-location=cache",
+    "build": "rollup -c"
+  },
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/meow2149/bylo.git",
+    "directory": "websocket"
+  },
+  "keywords": [
+    "ws",
+    "websocket",
+    "heartbeat",
+    "typescript",
+    "javascript"
+  ],
+  "author": "bylo",
+  "license": "MIT",
+  "description": "",
+  "publishConfig": {
+    "access": "public"
+  }
+}

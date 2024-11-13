@@ -43,7 +43,7 @@
                         const blob = new Blob([jsonData], { type: 'application/json' });
                         this.#webSocket.send(blob);
                     }
-                    this.#debugLog('→ Message sent:', data);
+                    this.#debugLog('↑ Message sent:', data);
                 }
                 catch (error) {
                     this.#debugLog('⚠ Message send failed:', error);
@@ -75,7 +75,7 @@
                     jsonData = await blob.text();
                 }
                 const data = JSON.parse(jsonData);
-                this.#debugLog('← Message received:', data);
+                this.#debugLog('↓ Message received:', data);
                 if (data.type === MessageType.PONG && this.#heartbeatResponseTimer) {
                     this.#clearHeartbeatResponseTimer();
                 }

@@ -3,17 +3,12 @@ enum MessageType {
   PONG = 1
 }
 
-enum MessageFormat {
-  JSON = 'json',
-  BINARY = 'binary'
-}
-
 interface WebSocketOptions {
   heartbeatInterval?: number
   reconnectionDelay?: number
   timeout?: number
   debug?: boolean
-  messageFormat?: MessageFormat
+  messageFormat?: 'json' | 'binary'
 }
 
 interface WebSocketMessage {
@@ -26,7 +21,7 @@ const defaultOptions: Required<WebSocketOptions> = {
   reconnectionDelay: 5 * 1000,
   timeout: 5 * 1000,
   debug: false,
-  messageFormat: MessageFormat.JSON
+  messageFormat: 'json'
 }
 
 class WebSocketWithHeartbeat {
@@ -55,7 +50,7 @@ class WebSocketWithHeartbeat {
     if (this.#webSocket?.readyState === WebSocket.OPEN) {
       try {
         const jsonData = JSON.stringify(data)
-        if (this.#options.messageFormat === MessageFormat.JSON) {
+        if (this.#options.messageFormat === 'json') {
           this.#webSocket.send(jsonData)
         } else {
           const blob = new Blob([jsonData], { type: 'application/json' })
@@ -88,7 +83,7 @@ class WebSocketWithHeartbeat {
   #onmessage = async (ev: MessageEvent) => {
     try {
       let jsonData: string
-      if (this.#options.messageFormat === MessageFormat.JSON) {
+      if (this.#options.messageFormat === 'json') {
         jsonData = ev.data
       } else {
         const blob: Blob = ev.data

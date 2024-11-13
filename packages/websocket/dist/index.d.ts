@@ -1,13 +1,9 @@
-declare enum MessageFormat {
-    JSON = "json",
-    BINARY = "binary"
-}
 interface WebSocketOptions {
     heartbeatInterval?: number;
     reconnectionDelay?: number;
     timeout?: number;
     debug?: boolean;
-    messageFormat?: MessageFormat;
+    messageFormat?: 'json' | 'binary';
 }
 interface WebSocketMessage {
     type: number;

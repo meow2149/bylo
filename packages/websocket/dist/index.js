@@ -9,17 +9,12 @@
         MessageType[MessageType["PING"] = 0] = "PING";
         MessageType[MessageType["PONG"] = 1] = "PONG";
     })(MessageType || (MessageType = {}));
-    var MessageFormat;
-    (function (MessageFormat) {
-        MessageFormat["JSON"] = "json";
-        MessageFormat["BINARY"] = "binary";
-    })(MessageFormat || (MessageFormat = {}));
     const defaultOptions = {
         heartbeatInterval: 30 * 1000,
         reconnectionDelay: 5 * 1000,
         timeout: 5 * 1000,
         debug: false,
-        messageFormat: MessageFormat.JSON
+        messageFormat: 'json'
     };
     class WebSocketWithHeartbeat {
         #options;
@@ -41,7 +36,7 @@
             if (this.#webSocket?.readyState === WebSocket.OPEN) {
                 try {
                     const jsonData = JSON.stringify(data);
-                    if (this.#options.messageFormat === MessageFormat.JSON) {
+                    if (this.#options.messageFormat === 'json') {
                         this.#webSocket.send(jsonData);
                     }
                     else {
@@ -72,7 +67,7 @@
         #onmessage = async (ev) => {
             try {
                 let jsonData;
-                if (this.#options.messageFormat === MessageFormat.JSON) {
+                if (this.#options.messageFormat === 'json') {
                     jsonData = ev.data;
                 }
                 else {

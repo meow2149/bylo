@@ -1,6 +1,6 @@
 {
   "name": "@bylo/websocket",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "type": "module",
@@ -26,7 +26,7 @@
   ],
   "author": "bylo",
   "license": "MIT",
-  "description": "",
+  "description": "A WebSocket client with built-in heartbeat mechanism, automatic reconnection, and message format support.",
   "publishConfig": {
     "access": "public"
   }

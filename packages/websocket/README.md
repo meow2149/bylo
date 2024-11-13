@@ -69,13 +69,8 @@ interface WebSocketOptions {
   // Enable debug logs (default: false)
   debug?: boolean
   
-  // Message format (default: MessageFormat.JSON)
-  messageFormat?: MessageFormat
-}
-
-enum MessageFormat {
-  JSON = 'json',
-  BINARY = 'binary'
+  // Message format (default: 'json')
+  messageFormat?: 'json' | 'binary'
 }
 ```
 
@@ -133,7 +128,7 @@ const ws = new WebSocket('ws://example.com', {
 
 ```typescript
 const ws = new WebSocket('ws://example.com', {
-  messageFormat: MessageFormat.BINARY
+  messageFormat: 'binary'
 })
 
 ws.onmessage = (ev: MessageEvent) => {
